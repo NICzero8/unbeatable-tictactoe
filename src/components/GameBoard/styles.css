@@ -1,0 +1,58 @@
+.game-board {
+  width: 100%;
+  aspect-ratio: 1/1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.tile {
+  position: relative;
+  width: 100%;
+}
+
+.custom_checkbox {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0;
+}
+
+.custom_checkbox + label {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+}
+
+.cross:checked + label::after {
+  content: "";
+  position: absolute;
+  inset: 20%;
+  background-image: url(../../assets/cross-svgrepo-com.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.circle:checked + label::after {
+  content: "";
+  position: absolute;
+  inset: 15%;
+  background-image: url(../../assets/circle-svgrepo-com.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+@media (hover: hover) {
+  .custom_checkbox:hover + label {
+    background: rgba(255, 255, 255, 0.45);
+  }
+}
