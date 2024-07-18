@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/unbeatable-tictactoe/static/css/main.21f3c6c0.css",
+    "main.js": "/unbeatable-tictactoe/static/js/main.702a0671.js",
+    "static/js/453.501ee379.chunk.js": "/unbeatable-tictactoe/static/js/453.501ee379.chunk.js",
+    "static/media/cross-svgrepo-com.svg": "/unbeatable-tictactoe/static/media/cross-svgrepo-com.3afff9059b7964d7154c.svg",
+    "index.html": "/unbeatable-tictactoe/index.html",
+    "static/media/circle-svgrepo-com.svg": "/unbeatable-tictactoe/static/media/circle-svgrepo-com.43376e573ce58a0fe264.svg",
+    "main.21f3c6c0.css.map": "/unbeatable-tictactoe/static/css/main.21f3c6c0.css.map",
+    "main.702a0671.js.map": "/unbeatable-tictactoe/static/js/main.702a0671.js.map",
+    "453.501ee379.chunk.js.map": "/unbeatable-tictactoe/static/js/453.501ee379.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.21f3c6c0.css",
+    "static/js/main.702a0671.js"
+  ]
+}
