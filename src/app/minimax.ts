@@ -15,9 +15,9 @@ export function evaluatePosition(board: GameState["gameArray"]): number {
   for (const pattern of winningPatterns) {
     const [a, b, c] = pattern;
     if (board[a] === "O" && board[b] === "O" && board[c] === "O") {
-      return 10;
+      return 20;
     } else if (board[a] === "X" && board[b] === "X" && board[c] === "X") {
-      return -10;
+      return -20;
     }
   }
 
@@ -28,9 +28,9 @@ function randomScore(): number {
   const a = Math.random()
   let randomScore = 0
   if (a <= 0.333) {
-    randomScore = 10
+    randomScore = 20
   } else if (a <= 0.666) {
-    randomScore = -10
+    randomScore = -20
   }
   return randomScore
 }
@@ -45,18 +45,20 @@ function minimax(
   depth: number,
 ): number {
   const score = evaluatePosition(board);
-  if (score === 10 || score === -10 || !board.includes(false)) {
-    // makes algorithm "stupid" sometimes giving player a chance to win, depth is needed to make it not too "studid"
-    if (!unbeatable && depth > 2) {
+  if (score === 20 || score === -20 || !board.includes(false)) {
+    // makes algorithm "stupid" sometimes giving player a chance to win, depth adjustment is needed to make it not too "studid"
+    if (!unbeatable && depth >= 2) {
       if (Math.random() < 0.3) {
-        console.log('blind', depth)
+        // console.log('blind', depth)
         return randomScore()
       }
     }
-    if (score === 0) {
-      return depth
+    if (score === -20) {
+      //depth adjustment to make the algorithm resist as long as possible
+      return score + depth
     }
-    return score;
+    // depth adjustment for achieving victory by the shortest route
+    return score - depth;
   }
 
   if (isMaximizing) {
@@ -65,7 +67,8 @@ function minimax(
       if (!board[i]) {
         const newBoard = [...board];
         newBoard[i] = "O";
-        const moveScore = minimax(newBoard, a, b, false, unbeatable, ++depth);
+        const moveScore = minimax(newBoard, a, b, false, unbeatable, depth +1);
+        // console.log(`Maximizing: Move: ${i}, MoveScore: ${moveScore}, MaxScore: ${maxScore}`);
         maxScore = Math.max(maxScore, moveScore);
         a = Math.max(a, moveScore)
         if (b <= a) {
@@ -81,7 +84,8 @@ function minimax(
       if (!board[i]) {
         const newBoard = [...board];
         newBoard[i] = "X";
-        const moveScore = minimax(newBoard, a, b, true, unbeatable, ++depth);
+        const moveScore = minimax(newBoard, a, b, true, unbeatable, depth + 1);
+        // console.log(`Minimizing: Move: ${i}, MoveScore: ${moveScore}, MinScore: ${minScore}`);
         minScore = Math.min(minScore, moveScore);
         b = Math.min(b, moveScore)
         if (b <= a) {

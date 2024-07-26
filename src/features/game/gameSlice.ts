@@ -23,10 +23,10 @@ const initialState: GameState = {
 
 function checkWin(board: GameState["gameArray"]) {
   const score = evaluatePosition(board);
-  if (score === -10) {
+  if (score === -20) {
     return "win";
   }
-  if (score === 10) {
+  if (score === 20) {
     return "loose";
   }
   if (score === 0 && !board.includes(false)) {
